@@ -1,0 +1,21 @@
+
+{
+    "appointment": [
+        {
+            "ref": "MTLG9ZAD1MTN58O7",
+            "sjtApt": "Consulting About My Last Operation ",
+            "dateApt": "2022-30-03",
+            "ref_user": "MTLG9ZAD1MTN58O7",
+            "schedule": 1
+        }
+    ],
+    "users": [
+        {
+            "firstName": "houcine",
+            "lastName": "Chaay",
+            "email": "houchaay@gmail.com",
+            "birthday": "2000-06-03",
+            "reference": "D9K4RDQTXH"
+        }
+    ]
+}
