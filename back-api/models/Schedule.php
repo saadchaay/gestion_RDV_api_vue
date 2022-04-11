@@ -20,13 +20,13 @@
             }
         }
 
-        public function check_schedule($date)
+        public function check_schedule($date,$sch)
         {
             //SELECT * FROM users INNER JOIN clients WHERE `users`.id_user = `clients`.id_user_fk AND `users`.id_user = :id
-            $this->db->query("SELECT * FROM `schedules` INNER JOIN `appointments` 
-                            WHERE `appointments`.id_sch_fk = `schedules`.id_crn AND dateApt = :dateApt");
+            $this->db->query("SELECT * FROM `schedules`, `appointments` WHERE dateApt = :dateApt AND `appointments`.id_sch_fk = `schedules`.`id_crn` AND `appointments`.id_sch_fk = :sch AND `appointments`.id_sch_fk IN(SELECT id_crn FROM `schedules`)");
 
             $this->db->bind(":dateApt", $date);
+            $this->db->bind(":sch", $sch);
             $this->db->execute();
             
             if($this->db->rowCount() > 0){
@@ -47,6 +47,20 @@
             
             if($this->db->execute()){
                 return true ;
+            } else {
+                return false ;
+            }
+        }
+
+        public function get_schedules_available($data)
+        {
+            $this->db->query("SELECT DISTINCT(id_crn) as id, start_time as start, finish_time as end FROM `schedules`,`appointments` WHERE id_crn NOT IN (SELECT id_sch_fk from `appointments` WHERE dateApt = :date_app)");
+            
+            // bind the values
+            $this->db->bind(":date_app", $data);
+            
+            if($this->db->execute()){
+                return $this->db->resultSet();
             } else {
                 return false ;
             }

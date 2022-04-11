@@ -1,16 +1,14 @@
 <template>
-  <NavComponent />
-  <AptComponent />
+  <SchComp />
 </template>
+
 <script>
-import AptComponent from "@/components/AptComponent.vue";
 import { mapActions } from "vuex";
-import NavComponent from "@/components/NavComponent.vue";
+import SchComp from "@/components/SchComp.vue";
 export default {
-  name: "AptView",
+  name: "SchedulesView",
   components: {
-    AptComponent,
-    NavComponent,
+    SchComp,
   },
   mounted() {
     let user = localStorage.getItem("reference");

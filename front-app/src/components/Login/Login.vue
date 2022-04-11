@@ -4,6 +4,9 @@
       <div class="card-body px-2">
         <h2 class="card-heading px-3">Login</h2>
         <h5 class="card-subheading px-3 pb-3">Enter Your Reference Code</h5>
+        <div class="error-feedback" v-if="error != ''">
+          {{ error }}
+        </div>
         <form v-on:submit.prevent="login">
           <div class="row rtwo">
             <div class="form-group col-md-12 fthree">
@@ -51,7 +54,11 @@ export default {
       data: {
         reference: "",
       },
+      error: "",
     };
+  },
+  mounted() {
+    this.check_login();
   },
   validations() {
     return {
@@ -74,11 +81,30 @@ export default {
           },
           body: JSON.stringify(this.data),
         });
-        if (res.status == 200) {
-          const data = await res.json();
-          localStorage.setItem("user-login", JSON.stringify(data));
-          this.redirectTo({ val: "appointments" });
+        const data = await res.json();
+        console.log(data);
+        switch (res.status) {
+          case 200:
+            localStorage.setItem("reference", data.reference);
+            console.log(data);
+            this.redirectTo({ val: "appointments" });
+            break;
+          case 404:
+            this.error = data.Error;
+            break;
+
+          default:
+            break;
         }
+      }
+    },
+    check_login() {
+      const if_loggedIn = localStorage.getItem("reference");
+      if (if_loggedIn) {
+        this.reference = if_loggedIn;
+        this.redirectTo({ val: "appointments" });
+      } else {
+        console.log("User not logged In yet!");
       }
     },
   },

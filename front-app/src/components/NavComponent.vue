@@ -1,27 +1,111 @@
 <template>
-  <nav>
-    <div>
+  <header>
+    <h2 class="logo">Clean<span>Teeth</span></h2>
+    <nav>
       <ul>
-        <li><a href=""> Home</a></li>
-        <li><a href=""> Appointment</a></li>
-        <li><a href=""> About Us</a></li>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/appointments">Appointment</router-link></li>
       </ul>
-    </div>
-    <div>
-      <ul>
-        <li><ButtonComponent title="Login" /></li>
-        <li><ButtonComponent title="Sign Up" /></li>
+      <ul v-if="!this.reference">
+        <li>
+          <button @click="redirectTo({ val: 'Login' })">Login</button>
+        </li>
+        <li>
+          <button @click="redirectTo({ val: 'SignUp' })">Sign Up</button>
+        </li>
       </ul>
-    </div>
-  </nav>
+      <ul v-if="this.reference">
+        <li class="btn btn-secondary">{{ this.reference }}</li>
+        <li>
+          <button @click="logout()">Log Out</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
 </template>
 
 <script>
-import ButtonComponent from "@/components/ButtonComponent.vue";
+import { mapActions } from "vuex";
 export default {
   name: "NavComponent",
-  components: {
-    ButtonComponent,
+  props: {
+    ref_user: String,
+  },
+  data: function () {
+    return {
+      reference: "",
+    };
+  },
+  mounted() {
+    this.reference = localStorage.getItem("reference");
+  },
+  components: {},
+  methods: {
+    ...mapActions(["redirectTo"]),
+    logout() {
+      localStorage.clear();
+      this.redirectTo({ val: "Login" });
+    },
   },
 };
 </script>
+
+<style scoped>
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f1f1f1;
+  height: 80px;
+}
+h2 {
+  flex: 1;
+  text-align: center;
+  margin: 0;
+}
+.logo {
+  margin-left: 1em;
+}
+span {
+  color: blue;
+}
+nav {
+  flex: 3;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0;
+}
+li {
+  list-style: none;
+  margin: 0 1.2em;
+  white-space: nowrap;
+}
+li:hover {
+  font-weight: bold;
+}
+li.btn:hover {
+  font-weight: normal;
+}
+a {
+  text-decoration: none;
+  color: rgb(61, 61, 61);
+}
+button {
+  font-size: 1em;
+  padding: 0.6em 0.7em;
+  color: white;
+  background: rgb(89, 145, 250);
+  border: none;
+  border-radius: 8px;
+}
+button:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+</style>

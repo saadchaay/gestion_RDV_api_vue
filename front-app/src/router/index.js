@@ -3,6 +3,8 @@ import HomeView from "../views/HomeView.vue";
 import SignupView from "../views/SignupView.vue";
 import LoginView from "../views/LoginView.vue";
 import AptView from "../views/AptView.vue";
+import AptsView from "../views/AptsView.vue";
+import SchedulesView from "../views/SchedulesView.vue";
 
 const routes = [
   {
@@ -14,6 +16,16 @@ const routes = [
     path: "/appointments",
     name: "appointments",
     component: AptView,
+  },
+  {
+    path: "/appointment",
+    name: "appointment",
+    component: AptsView,
+  },
+  {
+    path: "/schedules",
+    name: "schedules",
+    component: SchedulesView,
   },
   {
     path: "/sign-up",

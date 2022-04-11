@@ -113,6 +113,9 @@ export default {
       phone: { required, numeric, minLength: minLength(10) },
     };
   },
+  mounted() {
+    // this.check_login();
+  },
   methods: {
     ...mapActions(["redirectTo"]),
     async submit() {
@@ -133,11 +136,19 @@ export default {
         });
         if (res.status == 200) {
           const data = await res.json();
-          localStorage.setItem("user-sign-up", JSON.stringify(data));
+          localStorage.setItem("reference", data.reference);
           this.redirectTo({ val: "appointments" });
         }
       } else {
         console.log("Form validation Failed!");
+      }
+    },
+    check_login() {
+      const if_loggedIn = localStorage.getItem("reference");
+      if (if_loggedIn) {
+        this.reference = if_loggedIn;
+      } else {
+        console.log("User not logged In yet!");
       }
     },
   },

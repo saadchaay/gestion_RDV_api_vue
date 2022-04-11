@@ -22,7 +22,7 @@
 
         public function get_all_appointments($ref)
         {
-            $this->db->query("SELECT * FROM `appointments` WHERE ref_user_fk = :ref");
+            $this->db->query("SELECT * FROM `appointments` INNER JOIN `schedules` WHERE ref_user_fk = :ref AND `appointments`.`id_sch_fk` = `schedules`.`id_crn` ORDER BY id_apt DESC");
             $this->db->bind(":ref", $ref);
 
             if($this->db->execute()){

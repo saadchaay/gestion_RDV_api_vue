@@ -66,7 +66,7 @@
                 
                 if(empty($data->reference)){
                     $errors["message"] = "The reference is empty, Try again!";
-                }elseif(strlen($data->reference) < 10){
+                }elseif(strlen($data->reference) < 7){
                     $errors["message"] = "The reference must contain at least 10 characters!";
                 }
 
@@ -75,8 +75,10 @@
                         $user = $this->model->login($data->reference);
                         $success["message"] = "User has been Login Successfully.";
                         $success["ref"] = $data->reference;
+                        http_response_code(200);
                         echo json_encode(array("user" => $user, "success" => $success["message"], "reference" => $success["ref"]));
                     } else {
+                        http_response_code(404);
                         $errors["message"] = "This reference doesn't exists, try again!";
                         echo json_encode(array("Error" => $errors["message"]));
                     }
@@ -88,7 +90,7 @@
 
         public function generate_ref()
         {
-            $characters = '0123456789qwer67tyuio23pasdfgh458jklzxcvbnm19';
+            $characters = '0123456789QWERTYUIOPASDFGHJKLZXCVBNM1234567890qwertyuiopasdfghjklzxcvbnm';
             $ch_length = strlen($characters);
             $random_ref = "";
             for ($i=0; $i < 7; $i++) { 
