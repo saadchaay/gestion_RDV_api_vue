@@ -131,6 +131,11 @@ export default {
       const data = await res.json();
       this.success = data.Success;
     },
+    //update
+    update(id) {
+      this.id_appointment = id;
+      // this.redirectTo({ val: "update" });
+    },
   },
   components: { SchComp },
 };
@@ -154,6 +159,7 @@ body {
 thead {
   background: #dddcdc;
 }
+
 .alert-error {
   background-color: rgb(255, 177, 88);
 }
