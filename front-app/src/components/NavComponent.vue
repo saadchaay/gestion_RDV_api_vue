@@ -1,13 +1,15 @@
 <template>
   <header>
-    <h2 class="logo">Clean<span>Teeth</span></h2>
+    <h2 class="logo">
+      <router-link to="/"> Clean<span>Teeth</span></router-link>
+    </h2>
     <nav>
-      <ul>
+      <ul v-if="this.reference">
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/appointments">Appointment</router-link></li>
       </ul>
       <ul v-if="!this.reference">
-        <li>
+        <li class="marginLeft">
           <button @click="redirectTo({ val: 'Login' })">Login</button>
         </li>
         <li>
@@ -15,7 +17,7 @@
         </li>
       </ul>
       <ul v-if="this.reference">
-        <li class="btn btn-secondary">{{ this.reference }}</li>
+        <li class="ref"><b> Ref: </b>{{ this.reference }}</li>
         <li>
           <button @click="logout()">Log Out</button>
         </li>
@@ -107,5 +109,11 @@ button {
 button:hover {
   cursor: pointer;
   font-weight: bold;
+}
+.marginLeft {
+  margin-left: 35em;
+}
+.ref:hover {
+  font-weight: normal;
 }
 </style>
