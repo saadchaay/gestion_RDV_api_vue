@@ -58,7 +58,7 @@
             
             // bind the values
             $this->db->bind(":date_app", $data);
-            
+            print_r($this->db->resultSet());
             if($this->db->execute()){
                 return $this->db->resultSet();
             } else {
