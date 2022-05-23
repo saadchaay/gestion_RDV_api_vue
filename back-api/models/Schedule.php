@@ -58,9 +58,14 @@
             
             // bind the values
             $this->db->bind(":date_app", $data);
-            print_r($this->db->resultSet());
-            if($this->db->execute()){
-                return $this->db->resultSet();
+            $results = $this->db->resultSet();
+            if($results){
+                // for($i = 0; $i < count($results); $i++){
+                //     if(date("H:i",$results[$i]['start']) < date("H:i")){
+                //         unset($results[$i]);
+                //     } 
+                // }
+                return false;
             } else {
                 return false ;
             }
