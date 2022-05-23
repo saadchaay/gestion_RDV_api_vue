@@ -181,6 +181,8 @@ class Appointments
     public function schedules()
     {
         $data = json_decode(file_get_contents("php://input"));
+        date_default_timezone_set('UTC'); 
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if(empty($data->dateApt)){
                 http_response_code(404);
@@ -188,6 +190,15 @@ class Appointments
             } else {
                 $schedules = $this->schedule->get_schedules_available($data->dateApt);
                 if (!empty($schedules)) {
+                    $len = count($schedules);
+                    $j = 0;
+                    for($i = 0; $i < $len; $i++){
+                        if(date("H:i", strtotime($schedules[$i]->end)) < date("H:i")){
+                            unset($schedules[$i]);
+                            $j++;
+                        } 
+                    }
+                    unset($schedules[$j]);
                     http_response_code(200);
                     echo json_encode($schedules);
                 } else {
