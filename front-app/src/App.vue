@@ -3,6 +3,7 @@
     <router-view />
   </div>
 </template>
+
 <script>
 // import NavComponent from "@/components/NavComponent.vue";
 export default {
@@ -10,9 +11,6 @@ export default {
 };
 </script>
 <style lang="scss">
-// body {
-//   background-color: #f1f1f1;
-// }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
