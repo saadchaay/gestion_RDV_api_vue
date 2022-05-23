@@ -1,18 +1,48 @@
 <template>
   <div>
     <NavComponent />
-    <section>
-      <div class="container">
-        <div>
-          <h2>Pick the dentist that fits all <br />your needs the best.</h2>
-          <p>
-            Lorem ipsum dolor sit amet, eu duo ferri labor. Mea ex modo reque
-            <br />senserit, et sed hinc dolor, scaevola sum salutandi expetendis
-            vix ne.
-          </p>
-          <BtnComponent title="Book Appointment" />
+    <section class="block py-24 leading-7 text-left text-gray-900 bg-white">
+      <div
+        class="relative w-full px-5 px-8 mx-auto leading-7 text-gray-900 max-w-7xl lg:px-16 xl:px-32"
+      >
+        <div class="flex flex-col flex-wrap items-center text-left md:flex-row">
+          <div class="flex-1 opacity-100 xl:pr-12 transform-none">
+            <h1
+              class="box-border mt-0 text-4xl font-normal tracking-tight text-center text-gray-900 sm:text-5xl md:text-4xl lg:text-5xl mb-7 md:text-left"
+            >
+              Welcome to <span class="text-blue-600">CleanTeeth</span>.
+            </h1>
+
+            <!-- Text -->
+            <p
+              class="box-border mt-0 mb-8 text-base font-normal text-center text-gray-500 lg:text-xl md:text-left lg:mb-8"
+            >
+              Pick the dentist that fits all, your needs the best.
+            </p>
+
+            <!-- Buttons -->
+            <div
+              class="box-border leading-7 text-center text-gray-900 md:text-left"
+            >
+              <router-link
+                to="/appointments"
+                class="inline-block w-full px-5 py-3 mb-3 mr-1 text-base font-semibold text-white no-underline align-middle bg-blue-600 border border-transparent border-solid rounded-md cursor-pointer select-none sm:mb-0 sm:w-auto hover:bg-blue-700 hover:border-blue-700 hover:text-white focus-within:bg-blue-700 focus-within:border-blue-700"
+              >
+                Get Started Today
+              </router-link>
+            </div>
+          </div>
+
+          <div
+            class="relative flex justify-center flex-1 w-full px-5 mt-16 leading-7 text-gray-900 md:justify-end md:mt-0"
+          >
+            <!-- Image -->
+            <img
+              src="https://cdn.devdojo.com/images/november2020/welcome.png"
+              class="w-full max-w-md"
+            />
+          </div>
         </div>
-        <img src="../assets/banner.jpg" alt="" />
       </div>
     </section>
   </div>
@@ -21,10 +51,9 @@
 <script>
 // @ is an alias to /src
 import NavComponent from "@/components/NavComponent.vue";
-import BtnComponent from "../components/BtnComponent.vue";
 export default {
   name: "HomeView",
-  components: { NavComponent, BtnComponent },
+  components: { NavComponent },
 };
 </script>
 

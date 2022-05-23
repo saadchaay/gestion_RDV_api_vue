@@ -13,11 +13,14 @@
         <br /><span class="error-feedback" v-if="v$.topic.$error">{{
           v$.topic.$errors[0].$message
         }}</span>
-        <input type="date" v-model="dateApt" />
+        <input type="date" v-model="dateApt" :min="this.min_date" />
         <br /><span class="error-feedback" v-if="v$.dateApt.$error">{{
           v$.dateApt.$errors[0].$message
         }}</span>
-        <button type="submit" class="btn btn-primary mt-3">
+        <button
+          type="submit"
+          class="bg-blue-600 py-2 px-3 rounded-lg text-white mb-4"
+        >
           <span>Search</span>
         </button>
       </form>
@@ -66,6 +69,7 @@ export default {
   data: function () {
     return {
       v$: useValidate(),
+      min_date: "",
       dateApt: "",
       topic: "",
       all_schedules: {},
@@ -80,6 +84,7 @@ export default {
     };
   },
   mounted() {
+    this.min_date = new Date().toISOString().split("T")[0];
     console.log(this.id_appointment);
   },
   methods: {

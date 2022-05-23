@@ -5,6 +5,7 @@ import store from "./store";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import "./index.css";
 
 /* add icons to the library */
 library.add(faUserSecret);

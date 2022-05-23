@@ -12,7 +12,7 @@
     <div class="text-left">
       <button
         type="button"
-        class="btn btn-secondary my-3"
+        class="bg-gray-600 py-2 px-3 rounded-lg text-white mb-4"
         @click="goAppointment()"
       >
         Add an Appointment

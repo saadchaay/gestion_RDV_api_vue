@@ -1,29 +1,107 @@
 <template>
-  <header>
-    <h2 class="logo">
-      <router-link to="/"> Clean<span>Teeth</span></router-link>
-    </h2>
-    <nav>
-      <ul v-if="this.reference">
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/appointments">Appointment</router-link></li>
-      </ul>
-      <ul v-if="!this.reference">
-        <li class="marginLeft">
-          <button @click="redirectTo({ val: 'Login' })">Login</button>
-        </li>
-        <li>
-          <button @click="redirectTo({ val: 'SignUp' })">Sign Up</button>
-        </li>
-      </ul>
-      <ul v-if="this.reference">
-        <li class="ref"><b> Ref: </b>{{ this.reference }}</li>
-        <li>
-          <button @click="logout()">Log Out</button>
-        </li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Section 1 -->
+  <section class="relative w-full px-8 text-gray-700 bg-white body-font">
+    <div
+      class="container flex flex-col flex-wrap items-center justify-between py-5 mx-auto md:flex-row max-w-7xl"
+    >
+      <router-link
+        to="/"
+        class="relative z-10 flex items-center w-auto text-2xl font-extrabold leading-none text-blue-600 select-none"
+        >CleanTeeth.</router-link
+      >
+
+      <nav
+        v-if="this.reference"
+        class="top-0 left-0 z-0 flex items-center justify-center w-full h-full py-5 -ml-0 space-x-5 text-base md:-ml-5 md:py-0 md:absolute"
+      >
+        <router-link
+          to="/"
+          class="relative font-medium leading-6 text-gray-600 transition duration-150 ease-out hover:text-gray-900"
+          x-data="{ hover: false }"
+          @mouseenter="hover = true"
+          @mouseleave="hover = false"
+        >
+          <span class="block">Home</span>
+          <span
+            class="absolute bottom-0 left-0 inline-block w-full h-0.5 -mb-1 overflow-hidden"
+          >
+            <span
+              x-show="hover"
+              class="absolute inset-0 inline-block w-full h-1 h-full transform bg-gray-900"
+              x-transition:enter="transition ease duration-200"
+              x-transition:enter-start="scale-0"
+              x-transition:enter-end="scale-100"
+              x-transition:leave="transition ease-out duration-300"
+              x-transition:leave-start="scale-100"
+              x-transition:leave-end="scale-0"
+            ></span>
+          </span>
+        </router-link>
+        <router-link
+          to="/appointments"
+          class="relative font-medium leading-6 text-gray-600 transition duration-150 ease-out hover:text-gray-900"
+          x-data="{ hover: false }"
+          @mouseenter="hover = true"
+          @mouseleave="hover = false"
+        >
+          <span class="block">Appointment</span>
+          <span
+            class="absolute bottom-0 left-0 inline-block w-full h-0.5 -mb-1 overflow-hidden"
+          >
+            <span
+              x-show="hover"
+              class="absolute inset-0 inline-block w-full h-1 h-full transform bg-gray-900"
+              x-transition:enter="transition ease duration-200"
+              x-transition:enter-start="scale-0"
+              x-transition:enter-end="scale-100"
+              x-transition:leave="transition ease-out duration-300"
+              x-transition:leave-start="scale-100"
+              x-transition:leave-end="scale-0"
+            ></span>
+          </span>
+        </router-link>
+      </nav>
+
+      <div
+        v-if="!this.reference"
+        class="relative z-10 inline-flex items-center space-x-3 md:ml-5 lg:justify-end"
+      >
+        <router-link
+          to="/login"
+          class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-gray-600 whitespace-no-wrap bg-white border border-gray-200 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:shadow-none"
+        >
+          Sign in
+        </router-link>
+        <span class="inline-flex rounded-md shadow-sm">
+          <router-link
+            to="/sign-up"
+            class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Sign up
+          </router-link>
+        </span>
+      </div>
+      <div
+        v-if="this.reference"
+        class="relative z-10 inline-flex items-center space-x-3 md:ml-5 lg:justify-end"
+      >
+        <a
+          href="#"
+          class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-gray-600 whitespace-no-wrap bg-white border border-gray-200 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:shadow-none"
+        >
+          {{ this.reference }}
+        </a>
+        <span class="inline-flex rounded-md shadow-sm">
+          <button
+            @click="logout()"
+            class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-600 border border-blue-700 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Logout
+          </button>
+        </span>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -52,7 +130,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<!-- <style scoped>
 header {
   display: flex;
   justify-content: space-around;
@@ -74,6 +152,7 @@ span {
 nav {
   flex: 3;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
 }
@@ -116,4 +195,4 @@ button:hover {
 .ref:hover {
   font-weight: normal;
 }
-</style>
+</style> -->
