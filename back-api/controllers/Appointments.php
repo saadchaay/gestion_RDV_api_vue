@@ -220,6 +220,7 @@ class Appointments
             "finished" => $this->next_schedule($start),
             "duration" => 30
         ];
+        
         while ($schedule["starting"] != $end) {
             $this->schedule->create_schedule($schedule);
             $schedule["starting"] = $this->next_schedule($schedule["starting"]);
